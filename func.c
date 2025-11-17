@@ -82,33 +82,65 @@ struct Node* createNode(char name[]) {
 }
 
 void setupCityHierarchy() {
+    // Root node
     root = createNode("Central Facility");
 
+    // Zones
     struct Node *north = createNode("North Zone");
     struct Node *south = createNode("South Zone");
 
     root->firstChild = north;
     north->nextSibling = south;
 
+    // ========== NORTH ZONE ==========
+    // Ward1
     struct Node *ward1 = createNode("Ward1");
+    // Ward2
     struct Node *ward2 = createNode("Ward2");
     north->firstChild = ward1;
     ward1->nextSibling = ward2;
 
+    // Ward1 Houses
     struct Node *houseA = createNode("HouseA");
     struct Node *houseB = createNode("HouseB");
+    struct Node *houseC = createNode("HouseC");
     ward1->firstChild = houseA;
     houseA->nextSibling = houseB;
+    houseB->nextSibling = houseC;
 
-    struct Node *houseC = createNode("HouseC");
-    ward2->firstChild = houseC;
-
-    struct Node *ward3 = createNode("Ward3");
-    south->firstChild = ward3;
-
+    // Ward2 Houses
     struct Node *houseD = createNode("HouseD");
-    ward3->firstChild = houseD;
+    struct Node *houseE = createNode("HouseE");
+    struct Node *houseF = createNode("HouseF");
+    ward2->firstChild = houseD;
+    houseD->nextSibling = houseE;
+    houseE->nextSibling = houseF;
+
+    // ========== SOUTH ZONE ==========
+    // Ward3
+    struct Node *ward3 = createNode("Ward3");
+    // Ward4
+    struct Node *ward4 = createNode("Ward4");
+    south->firstChild = ward3;
+    ward3->nextSibling = ward4;
+
+    // Ward3 Houses
+    struct Node *houseG = createNode("HouseG");
+    struct Node *houseH = createNode("HouseH");
+    struct Node *houseI = createNode("HouseI");
+    ward3->firstChild = houseG;
+    houseG->nextSibling = houseH;
+    houseH->nextSibling = houseI;
+
+    // Ward4 Houses
+    struct Node *houseJ = createNode("HouseJ");
+    struct Node *houseK = createNode("HouseK");
+    struct Node *houseL = createNode("HouseL");
+    ward4->firstChild = houseJ;
+    houseJ->nextSibling = houseK;
+    houseK->nextSibling = houseL;
 }
+
 
 struct Node* findNode(struct Node *root, char name[]) {
     if (root == NULL) return NULL;
