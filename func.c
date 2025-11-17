@@ -67,8 +67,13 @@ void deleteRequest(char location[]) {
     }
 
     free(temp);
+
+    struct Node* node = findNode(root, location);
+    if (node) node->wasteAmount = 0;
+
     printf("Request for %s has been deleted successfully.\n", location);
 }
+
 
 // ------------------------------- TREE FUNCTIONS --------------------------
 
