@@ -48,6 +48,7 @@ void deleteRequest(char location[]) {
 
     struct Request *temp = front, *prev = NULL;
 
+    // Find the first matching request
     while (temp != NULL && strcmp(temp->location, location) != 0) {
         prev = temp;
         temp = temp->next;
@@ -58,6 +59,7 @@ void deleteRequest(char location[]) {
         return;
     }
 
+    // Remove node from queue
     if (temp == front) {
         front = front->next;
         if (front == NULL) rear = NULL;
@@ -66,15 +68,19 @@ void deleteRequest(char location[]) {
         if (temp == rear) rear = prev;
     }
 
-    free(temp);
-
+    // FIX: subtract ONLY the deleted request's waste from the tree
     struct Node* node = findNode(root, location);
-    if (node) node->wasteAmount -= temp->wasteAmount;
-    if (node->wasteAmount < 0) node->wasteAmount = 0;
-
+    if (node) {
+        node->wasteAmount -= temp->wasteAmount;
+        if (node->wasteAmount < 0)
+            node->wasteAmount = 0;  // safety check
+    }
 
     printf("Request for %s has been deleted successfully.\n", location);
+
+    free(temp);
 }
+
 
 
 // ------------------------------- TREE FUNCTIONS --------------------------
