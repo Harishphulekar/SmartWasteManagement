@@ -28,8 +28,12 @@ int main() {
                 printf("Enter Location (e.g., Ward1/HouseA): ");
                 scanf("%s", location);
                 printf("Enter Waste Amount (kg): ");
-                scanf("%d", &amount);
-
+                int result = scanf("%d", &amount);
+                if (result != 1) {
+                    printf("Invalid amount! Please enter a number.\n");
+                    while (getchar() != '\n');  // clear input buffer
+                    continue; // go back to menu
+                }
                 enqueueRequest(location, amount);
                 struct Node *node = findNode(root, location);
                 if (node != NULL) node->wasteAmount += amount;
