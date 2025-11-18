@@ -70,7 +70,7 @@ void deleteRequest(char location[]) {
 
     struct Node* node = findNode(root, location);
     if (node) node->wasteAmount -= temp->wasteAmount;
-                if (node->wasteAmount < 0) node->wasteAmount = 0;
+    if (node->wasteAmount < 0) node->wasteAmount = 0;
 
 
     printf("Request for %s has been deleted successfully.\n", location);
