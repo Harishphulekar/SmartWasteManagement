@@ -56,7 +56,7 @@ int main() {
                 enqueueRequest(location, amount);
                 node->wasteAmount += amount;
             
-                printf("Your request for %s (%d kg) added successfully!\n", location, amount);
+                // printf("Your request for %s (%d kg) added successfully!\n", location, amount);
                 break;
 
 
