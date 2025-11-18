@@ -24,22 +24,28 @@ int main() {
         int amount;
 
         switch (choice) {
-            case 1: {
+            case 1:
                 printf("Enter Location (e.g., Ward1/HouseA): ");
                 scanf("%s", location);
+            
                 printf("Enter Waste Amount (kg): ");
-                int result = scanf("%d", &amount);
-                if (result != 1) {
-                    printf("Invalid amount! Please enter a number.\n");
-                    while (getchar() != '\n');  // clear input buffer
-                    continue; // go back to menu
-                }
-                enqueueRequest(location, amount);
+                scanf("%d", &amount);
+            
+                // First validate if location exists in tree
                 struct Node *node = findNode(root, location);
-                if (node != NULL) node->wasteAmount += amount;
-                else printf("⚠ Location not found in city hierarchy!\n");
+            
+                if (node == NULL) {
+                    printf("⚠ Error: Location '%s' does not exist in city hierarchy. Request NOT added.\n", location);
+                    break;  // Do NOT add request
+                }
+            
+                // Now it is safe to enqueue and update tree
+                enqueueRequest(location, amount);
+                node->wasteAmount += amount;
+            
+                printf("Your request for %s (%d kg) added successfully!\n", location, amount);
                 break;
-            }
+
 
             case 2:
                 displayRequests();
