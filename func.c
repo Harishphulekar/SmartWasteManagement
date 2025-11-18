@@ -40,6 +40,7 @@ void displayRequests() {
     }
 }
 
+
 void deleteRequest(char location[]) {
     if (front == NULL) {
         printf("No requests to delete.\n");
@@ -48,7 +49,7 @@ void deleteRequest(char location[]) {
 
     struct Request *temp = front, *prev = NULL;
 
-    // Find the first matching request
+    // Find the FIRST matching request
     while (temp != NULL && strcmp(temp->location, location) != 0) {
         prev = temp;
         temp = temp->next;
@@ -59,7 +60,7 @@ void deleteRequest(char location[]) {
         return;
     }
 
-    // Remove node from queue
+    // Remove from queue
     if (temp == front) {
         front = front->next;
         if (front == NULL) rear = NULL;
@@ -68,18 +69,19 @@ void deleteRequest(char location[]) {
         if (temp == rear) rear = prev;
     }
 
-    // FIX: subtract ONLY the deleted request's waste from the tree
-    struct Node* node = findNode(root, location);
-    if (node) {
+    // FIX: Subtract ONLY this request's waste
+    struct Node *node = findNode(root, location);
+    if (node != NULL) {
         node->wasteAmount -= temp->wasteAmount;
         if (node->wasteAmount < 0)
-            node->wasteAmount = 0;  // safety check
+            node->wasteAmount = 0;   // Safety check
     }
 
     printf("Request for %s has been deleted successfully.\n", location);
 
     free(temp);
 }
+
 
 
 
