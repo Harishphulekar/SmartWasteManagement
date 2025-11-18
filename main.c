@@ -28,23 +28,37 @@ int main() {
                 printf("Enter Location (e.g., Ward1/HouseA): ");
                 scanf("%s", location);
             
-                printf("Enter Waste Amount (kg): ");
-                scanf("%d", &amount);
-            
-                // First validate if location exists in tree
+                // Check if location exists in the city hierarchy BEFORE adding request
                 struct Node *node = findNode(root, location);
-            
                 if (node == NULL) {
-                    printf("⚠ Error: Location '%s' does not exist in city hierarchy. Request NOT added.\n", location);
-                    break;  // Do NOT add request
+                    printf("Error: Location '%s' does not exist in the city hierarchy. Request NOT added.\n", location);
+                    break;
                 }
             
-                // Now it is safe to enqueue and update tree
+                printf("Enter Waste Amount (kg): ");
+            
+                // Validate numeric input
+                if (scanf("%d", &amount) != 1) {
+                    printf("Error: Invalid input! Waste amount must be a number.\n");
+            
+                    // Clear invalid characters from input buffer
+                    while (getchar() != '\n');
+                    break;
+                }
+            
+                // Validate amount is NOT negative
+                if (amount < 0) {
+                    printf("Error: Waste amount cannot be negative. Request NOT added.\n");
+                    break;
+                }
+            
+                // If all validation is correct → Add to queue + update tree
                 enqueueRequest(location, amount);
                 node->wasteAmount += amount;
             
                 printf("Your request for %s (%d kg) added successfully!\n", location, amount);
                 break;
+
 
 
             case 2:
