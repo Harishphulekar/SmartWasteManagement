@@ -17,7 +17,7 @@ struct Request {
 };
 
 // ------------------------------- GLOBALS ----------------------------------
-extern struct Node *root;
+
 extern struct Request *front;
 extern struct Request *rear;
 
@@ -26,11 +26,11 @@ extern struct Request *rear;
 // Queue functions
 void enqueueRequest(char location[], int amount);
 void displayRequests();
-void deleteRequest(char location[]);
+void deleteRequest(char location[], struct Node *root);
 
 // Tree functions
 struct Node* createNode(char name[]);
-void setupCityHierarchy();
+struct Node* setupCityHierarchy();
 struct Node* findNode(struct Node *root, char name[]);
 void collectWaste(struct Node *node);
 int printPath(struct Node *node, char location[]);
