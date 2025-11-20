@@ -3,6 +3,8 @@
 #include <string.h>
 #include "waste.h"
 
+
+struct Node *root = NULL;
 int main() {
     setupCityHierarchy();
     int choice;
