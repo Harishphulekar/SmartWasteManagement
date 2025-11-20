@@ -41,7 +41,7 @@ void displayRequests() {
 }
 
 
-void deleteRequest(char location[]) {
+void deleteRequest(char location[], struct Node *root) {
     if (front == NULL) {
         printf("No requests to delete.\n");
         return;
@@ -96,9 +96,9 @@ struct Node* createNode(char name[]) {
     return newNode;
 }
 
-struct Node setupCityHierarchy() {
+struct Node* setupCityHierarchy() {
     // Root node
-    root = createNode("Central Facility");
+    struct Node *root_local = createNode("Central Facility");
 
     // Zones
     struct Node *north = createNode("North Zone");
