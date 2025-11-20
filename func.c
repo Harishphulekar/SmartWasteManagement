@@ -86,6 +86,22 @@ void deleteRequest(char location[], struct Node *root) {
 
 
 // ------------------------------- TREE FUNCTIONS --------------------------
+struct Node* createNode(char name[]) {
+    struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Memory allocation failed for node %s\n", name);
+        exit(1);
+    }
+
+    strcpy(newNode->name, name);
+    newNode->wasteAmount = 0;
+    newNode->firstChild = NULL;
+    newNode->nextSibling = NULL;
+
+    return newNode;
+}
+
+
 struct Node* setupCityHierarchy() {
     // Root node
     struct Node *root = createNode("Central Facility");
