@@ -86,19 +86,9 @@ void deleteRequest(char location[], struct Node *root) {
 
 
 // ------------------------------- TREE FUNCTIONS --------------------------
-
-struct Node* createNode(char name[]) {
-    struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
-    strcpy(newNode->name, name);
-    newNode->wasteAmount = 0;
-    newNode->firstChild = NULL;
-    newNode->nextSibling = NULL;
-    return newNode;
-}
-
 struct Node* setupCityHierarchy() {
     // Root node
-    struct Node *root_local = createNode("Central Facility");
+    struct Node *root = createNode("Central Facility");
 
     // Zones
     struct Node *north = createNode("North Zone");
@@ -154,7 +144,10 @@ struct Node* setupCityHierarchy() {
     ward4->firstChild = houseJ;
     houseJ->nextSibling = houseK;
     houseK->nextSibling = houseL;
+
+    return root;
 }
+
 
 
 struct Node* findNode(struct Node *root, char name[]) {
