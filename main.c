@@ -87,7 +87,7 @@ int main() {
                 break;
 
             case 4:
-                printf("Enter Location to find route: ");
+                printf("Enter Location to find route(eg.,Ward1/HouseA): ");
                 scanf("%s", location);
                 printf("Path from root to %s: ", location);
                 if (!printPath(root, location)) printf("Location not found!\n");
@@ -99,7 +99,7 @@ int main() {
                 break;
 
             case 6:
-                printf("Enter location to delete request: ");
+                printf("Enter location to delete request(eg.,Ward1/HouseA): ");
                 scanf("%s", location);
                 deleteRequest(location);
                 break;
