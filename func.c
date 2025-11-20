@@ -4,7 +4,7 @@
 #include "waste.h"
 
 // ------------------------------- GLOBAL VARIABLES -------------------------
-struct Node *root = NULL;
+
 struct Request *front = NULL;
 struct Request *rear = NULL;
 
@@ -96,7 +96,7 @@ struct Node* createNode(char name[]) {
     return newNode;
 }
 
-void setupCityHierarchy() {
+struct Node setupCityHierarchy() {
     // Root node
     root = createNode("Central Facility");
 
