@@ -4,8 +4,8 @@
 #include "waste.h"
 
 
-struct Node *root = NULL;
 int main() {
+    struct Node *root = NULL;
     root = setupCityHierarchy();
     int choice;
 
