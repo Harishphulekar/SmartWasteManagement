@@ -6,7 +6,7 @@
 
 struct Node *root = NULL;
 int main() {
-    setupCityHierarchy();
+    root = setupCityHierarchy();
     int choice;
 
     while (1) {
@@ -103,7 +103,7 @@ int main() {
             case 6:
                 printf("Enter location to delete request(eg.,Ward1/HouseA): ");
                 scanf("%s", location);
-                deleteRequest(location);
+                deleteRequest(location,root);
                 break;
 
             case 7:
