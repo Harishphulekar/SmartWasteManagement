@@ -18,7 +18,16 @@ int main() {
         printf("7. Exit\n");
         printf("----------------------------------------\n");
         printf("Enter your choice: ");
-        scanf("%d", &choice);
+        printf("Enter your choice: ");
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input! Please enter a number between 1 and 7.\n");
+        
+            // Clear input buffer
+            while (getchar() != '\n');
+        
+            continue;   // Go back to menu
+        }
+
 
         char location[30];
         int amount;
